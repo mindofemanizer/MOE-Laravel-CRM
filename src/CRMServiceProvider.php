@@ -2,6 +2,7 @@
 
 namespace Moe\CRM;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class CRMServiceProvider extends ServiceProvider
@@ -24,5 +25,26 @@ class CRMServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'crm-migrations');
+
+        $this->registerEventListeners();
+    }
+
+    protected function registerEventListeners(): void
+    {
+        $listener = 'Moe\\CRM\\Listeners\\LogCustomerActivityOnOrderEvent';
+
+        if (class_exists('Moe\\Commerce\\Events\\OrderPlaced')) {
+            Event::listen(
+                'Moe\\Commerce\\Events\\OrderPlaced',
+                [$listener, 'handleOrderPlaced']
+            );
+        }
+
+        if (class_exists('Moe\\Commerce\\Events\\OrderStatusChanged')) {
+            Event::listen(
+                'Moe\\Commerce\\Events\\OrderStatusChanged',
+                [$listener, 'handleOrderCompleted']
+            );
+        }
     }
 }
