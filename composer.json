@@ -1,0 +1,41 @@
+{
+    "name": "moe/laravel-crm",
+    "description": "CRM module for MOE ecosystem — Contact, Segment, Lead, Activity",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MindOfEmanizer",
+            "email": "emanizer@example.com"
+        }
+    ],
+    "keywords": ["laravel", "crm", "contact", "segment", "lead", "activity", "moe"],
+    "autoload": {
+        "psr-4": {
+            "Moe\\CRM\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Moe\\CRM\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0|^13.0",
+        "moe/laravel-core": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Moe\\CRM\\CRMServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
