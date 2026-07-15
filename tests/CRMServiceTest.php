@@ -34,7 +34,7 @@ class CRMServiceTest extends TestCase
 
     public function test_can_log_activity()
     {
-        $activity = $this->activityService->log($this->contact, 'call', 'Telpon diskusi');
+        $activity = $this->activityService->record($this->contact, 'call', 'Telpon diskusi');
 
         $this->assertNotNull($activity->id);
         $this->assertEquals('call', $activity->type);

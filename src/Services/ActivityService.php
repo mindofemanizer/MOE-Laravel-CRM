@@ -8,9 +8,9 @@ use Moe\CRM\Models\Activity;
 class ActivityService extends BaseService
 {
     /**
-     * Log an activity.
+     * Record an activity.
      */
-    public function log(
+    public function record(
         $subject,
         string $type,
         string $description,
