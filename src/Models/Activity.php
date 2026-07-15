@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Moe\CRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,7 +45,7 @@ class Activity extends Model
         return $this->morphTo();
     }
 
-    public function performer()
+    public function performer(): BelongsTo
     {
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'), 'performed_by');
     }

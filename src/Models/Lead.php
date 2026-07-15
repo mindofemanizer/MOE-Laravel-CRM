@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Moe\CRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Moe\CRM\Contracts\LeadInterface;
 
@@ -57,7 +59,7 @@ class Lead extends Model implements LeadInterface
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'), 'assigned_to');
     }
 
-    public function activities()
+    public function activities(): MorphMany
     {
         return $this->morphMany(Activity::class, 'subject');
     }

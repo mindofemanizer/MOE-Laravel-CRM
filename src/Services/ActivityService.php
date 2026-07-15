@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Moe\CRM\Services;
 
+use Illuminate\Database\Eloquent\Model;
 use Moe\Core\Base\BaseService;
 use Moe\CRM\Models\Activity;
 
@@ -11,7 +13,7 @@ class ActivityService extends BaseService
      * Record an activity.
      */
     public function record(
-        $subject,
+        Model $subject,
         string $type,
         string $description,
         ?array $metadata = null,
@@ -34,7 +36,7 @@ class ActivityService extends BaseService
     /**
      * Get activities for a subject (Contact, Lead, etc.).
      */
-    public function getForSubject($subject, ?string $type = null, int $limit = 50): array
+    public function getForSubject(Model $subject, ?string $type = null, int $limit = 50): array
     {
         $query = Activity::where('subject_type', $subject->getMorphClass())
             ->where('subject_id', $subject->getKey());

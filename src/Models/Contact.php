@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Moe\CRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Moe\CRM\Contracts\ContactInterface;
@@ -45,7 +47,7 @@ class Contact extends Model implements ContactInterface, SegmentableInterface
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'));
     }
 
-    public function segments()
+    public function segments(): BelongsToMany
     {
         return $this->belongsToMany(
             Segment::class,

@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Moe\CRM\Services;
 
 use Moe\Core\Base\BaseService;
 use Moe\CRM\Models\Contact;
-use Moe\CRM\Models\Lead;
 use Moe\CRM\Models\Segment;
 
 class SegmentService extends BaseService
