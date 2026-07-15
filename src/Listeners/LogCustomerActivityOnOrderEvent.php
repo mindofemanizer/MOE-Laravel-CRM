@@ -2,15 +2,18 @@
 
 namespace Moe\CRM\Listeners;
 
-use Moe\Commerce\Events\OrderPlaced;
-use Moe\Commerce\Events\OrderStatusChanged;
 use Moe\CRM\Models\Activity;
 use Moe\CRM\Models\Contact;
 
 class LogCustomerActivityOnOrderEvent
 {
-    public function handleOrderPlaced(OrderPlaced $event): void
+    public function handleOrderPlaced(object $event): void
     {
+        $orderPlacedClass = 'Moe\Commerce\Events\OrderPlaced';
+        if (!class_exists($orderPlacedClass) || !$event instanceof $orderPlacedClass) {
+            return;
+        }
+
         $contact = Contact::where('user_id', $event->order->user_id)->first();
         if (! $contact) {
             return;
@@ -31,8 +34,13 @@ class LogCustomerActivityOnOrderEvent
         ]);
     }
 
-    public function handleOrderCompleted(OrderStatusChanged $event): void
+    public function handleOrderCompleted(object $event): void
     {
+        $orderStatusChangedClass = 'Moe\Commerce\Events\OrderStatusChanged';
+        if (!class_exists($orderStatusChangedClass) || !$event instanceof $orderStatusChangedClass) {
+            return;
+        }
+
         if ($event->newStatus !== 'completed') {
             return;
         }

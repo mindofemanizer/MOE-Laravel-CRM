@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Moe\CRM\Contracts\ContactInterface;
+use Moe\CRM\Contracts\SegmentableInterface;
 
-class Contact extends Model implements ContactInterface
+class Contact extends Model implements ContactInterface, SegmentableInterface
 {
     use SoftDeletes;
 
