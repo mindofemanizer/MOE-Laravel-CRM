@@ -11,6 +11,12 @@ class LeadService extends BaseService
 {
     /**
      * Create lead from contact.
+     *
+     * @param int $contactId
+     * @param array $data
+     * @return \Moe\CRM\Models\Lead
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function createFromContact(int $contactId, array $data = []): Lead
     {
@@ -29,6 +35,13 @@ class LeadService extends BaseService
 
     /**
      * Move lead to next stage.
+     *
+     * @param int $leadId
+     * @param string|null $notes
+     * @return \Moe\CRM\Models\Lead
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws \Exception
      */
     public function advanceStage(int $leadId, ?string $notes = null): Lead
     {
@@ -56,6 +69,11 @@ class LeadService extends BaseService
 
     /**
      * Mark lead as won.
+     *
+     * @param int $leadId
+     * @return \Moe\CRM\Models\Lead
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function markAsWon(int $leadId): Lead
     {
@@ -70,6 +88,12 @@ class LeadService extends BaseService
 
     /**
      * Mark lead as lost.
+     *
+     * @param int $leadId
+     * @param string $reason
+     * @return \Moe\CRM\Models\Lead
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function markAsLost(int $leadId, string $reason): Lead
     {
@@ -84,6 +108,8 @@ class LeadService extends BaseService
 
     /**
      * Get pipeline summary.
+     *
+     * @return array
      */
     public function getPipelineSummary(): array
     {

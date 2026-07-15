@@ -36,6 +36,9 @@ class Segment extends Model
         $this->table = config('crm.tables.segments', 'crm_segments');
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function contacts(): BelongsToMany
     {
         return $this->belongsToMany(

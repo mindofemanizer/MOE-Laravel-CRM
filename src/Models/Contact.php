@@ -42,11 +42,17 @@ class Contact extends Model implements ContactInterface, SegmentableInterface
         $this->table = config('crm.tables.contacts', 'crm_contacts');
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'));
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function segments(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -55,16 +61,25 @@ class Contact extends Model implements ContactInterface, SegmentableInterface
         )->withTimestamps();
     }
 
+    /**
+     * @return MorphMany
+     */
     public function activities(): MorphMany
     {
         return $this->morphMany(Activity::class, 'subject');
     }
 
+    /**
+     * @return string
+     */
     public function getFullName(): string
     {
         return trim($this->first_name . ' ' . $this->last_name);
     }
 
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;

@@ -5,5 +5,8 @@ namespace Moe\CRM\Contracts;
 
 interface SegmentableInterface
 {
+    /**
+     * @return mixed
+     */
     public function segments();
 }

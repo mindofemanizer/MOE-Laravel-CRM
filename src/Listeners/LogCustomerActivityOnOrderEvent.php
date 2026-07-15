@@ -8,6 +8,10 @@ use Moe\CRM\Models\Contact;
 
 class LogCustomerActivityOnOrderEvent
 {
+    /**
+     * @param object $event
+     * @return void
+     */
     public function handleOrderPlaced(object $event): void
     {
         $orderPlacedClass = 'Moe\Commerce\Events\OrderPlaced';
@@ -35,6 +39,10 @@ class LogCustomerActivityOnOrderEvent
         ]);
     }
 
+    /**
+     * @param object $event
+     * @return void
+     */
     public function handleOrderCompleted(object $event): void
     {
         $orderStatusChangedClass = 'Moe\Commerce\Events\OrderStatusChanged';

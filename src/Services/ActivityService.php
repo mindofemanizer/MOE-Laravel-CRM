@@ -11,6 +11,13 @@ class ActivityService extends BaseService
 {
     /**
      * Record an activity.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $subject
+     * @param string $type
+     * @param string $description
+     * @param array|null $metadata
+     * @param int|null $performedBy
+     * @return \Moe\CRM\Models\Activity
      */
     public function record(
         Model $subject,
@@ -35,6 +42,11 @@ class ActivityService extends BaseService
 
     /**
      * Get activities for a subject (Contact, Lead, etc.).
+     *
+     * @param \Illuminate\Database\Eloquent\Model $subject
+     * @param string|null $type
+     * @param int $limit
+     * @return array
      */
     public function getForSubject(Model $subject, ?string $type = null, int $limit = 50): array
     {
@@ -50,6 +62,9 @@ class ActivityService extends BaseService
 
     /**
      * Get recent activities across all subjects.
+     *
+     * @param int $limit
+     * @return array
      */
     public function getRecent(int $limit = 20): array
     {

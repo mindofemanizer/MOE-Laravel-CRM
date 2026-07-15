@@ -49,16 +49,25 @@ class Lead extends Model implements LeadInterface
         $this->table = config('crm.tables.leads', 'crm_leads');
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function assignee(): BelongsTo
     {
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'), 'assigned_to');
     }
 
+    /**
+     * @return MorphMany
+     */
     public function activities(): MorphMany
     {
         return $this->morphMany(Activity::class, 'subject');

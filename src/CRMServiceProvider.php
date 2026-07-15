@@ -8,6 +8,9 @@ use Illuminate\Support\ServiceProvider;
 
 class CRMServiceProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     */
     public function register(): void
     {
         $this->app->singleton(\Moe\CRM\Services\ActivityService::class);
@@ -15,6 +18,9 @@ class CRMServiceProvider extends ServiceProvider
         $this->app->singleton(\Moe\CRM\Services\LeadService::class);
     }
 
+    /**
+     * @return void
+     */
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -30,6 +36,9 @@ class CRMServiceProvider extends ServiceProvider
         $this->registerEventListeners();
     }
 
+    /**
+     * @return void
+     */
     protected function registerEventListeners(): void
     {
         $listener = 'Moe\\CRM\\Listeners\\LogCustomerActivityOnOrderEvent';

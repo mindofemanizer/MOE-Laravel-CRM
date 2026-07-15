@@ -11,6 +11,12 @@ class SegmentService extends BaseService
 {
     /**
      * Assign contact to segments.
+     *
+     * @param int $contactId
+     * @param array $segmentIds
+     * @return \Moe\CRM\Models\Contact
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function assignToContact(int $contactId, array $segmentIds): Contact
     {
@@ -21,6 +27,12 @@ class SegmentService extends BaseService
 
     /**
      * Remove contact from segments.
+     *
+     * @param int $contactId
+     * @param array $segmentIds
+     * @return \Moe\CRM\Models\Contact
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function removeFromContact(int $contactId, array $segmentIds): Contact
     {
@@ -31,6 +43,11 @@ class SegmentService extends BaseService
 
     /**
      * Get contacts by segment.
+     *
+     * @param int $segmentId
+     * @return array
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function getContactsBySegment(int $segmentId): array
     {
@@ -40,6 +57,11 @@ class SegmentService extends BaseService
 
     /**
      * Get segments for a contact.
+     *
+     * @param int $contactId
+     * @return array
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function getContactSegments(int $contactId): array
     {

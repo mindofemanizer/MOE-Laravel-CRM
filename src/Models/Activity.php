@@ -40,11 +40,17 @@ class Activity extends Model
         $this->table = config('crm.tables.activities', 'crm_activities');
     }
 
+    /**
+     * @return MorphTo
+     */
     public function subject(): MorphTo
     {
         return $this->morphTo();
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function performer(): BelongsTo
     {
         return $this->belongsTo(config('crm.models.user', 'App\\Models\\User'), 'performed_by');
