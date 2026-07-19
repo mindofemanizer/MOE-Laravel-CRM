@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('crm_contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignUlid('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
@@ -55,7 +55,7 @@ return new class extends Migration
             $table->string('source', 50)->nullable();
             $table->integer('score')->default(0);
             $table->decimal('expected_value', 15, 2)->default(0);
-            $table->unsignedBigInteger('assigned_to')->nullable();
+            $table->ulid('assigned_to')->nullable();
             $table->text('notes')->nullable();
             $table->timestamp('converted_at')->nullable();
             $table->string('lost_reason')->nullable();
@@ -72,7 +72,7 @@ return new class extends Migration
             $table->string('type', 50);
             $table->text('description')->nullable();
             $table->json('metadata')->nullable();
-            $table->unsignedBigInteger('performed_by')->nullable();
+            $table->ulid('performed_by')->nullable();
             $table->timestamp('performed_at');
             $table->timestamps();
             $table->softDeletes();
